@@ -1,2 +1,2 @@
 # Shanes-Rib-Shack
-Mintic Ciclo 3
+Python Flask App Mintic 2021
