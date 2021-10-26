@@ -18,15 +18,16 @@
                 <h1>Shane's Rib Shack</h1>
             </div>
             <div class="navOptioons">
-                <h1>Bienvenido {{user}}</h1>
                 <form action="/ShanesRibShack/logout" method="POST">
+                    <span class="CarPrice">15.000</span>
                     <button type="submit">Cerrar sesión</button>
                 </form>
             </div>
           
         </div>
         <div class="navbar-searchbar">
-
+            <input type="text" placeholder="Buscar" class="NavbarInput">
+            <button type="" class="searchBtn">A</button>
         </div>
     </nav>
     {% block body%}

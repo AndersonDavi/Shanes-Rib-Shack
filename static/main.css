@@ -11,6 +11,7 @@
     --ColorNum3-- : #353535;
     --ColorNum4--: #ec9134;
 }
+
 .navbar{
     width: 100%;
     height: 130px;
@@ -44,11 +45,29 @@
 .navOptioons{
     color: aliceblue;
     display: flex;
+    flex-direction: row;
     align-items: center;
     width: 50%;
     height: 100%;
     /* background: #761db1; */
-    padding-left: 20px;
+    /* padding-left: 20px; */
+}
+.navOptioons form{
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    padding-right: 40px;
+    height: 100%;
+}
+.navOptioons form button{
+    cursor: pointer;
+    background: var(--ColorNum4--);
+    color: aliceblue;
+    border-radius: 15px;
+    border: #faeee2 solid 2px;
+    padding: 5px;
 }
 .IndexContainer{
     overflow: auto;
@@ -126,7 +145,7 @@ form{
     border-radius: 60px;
     border: #cd7416 solid 2px;
 }
-input:focus{
+/* input:focus{
     color: #353535;
     margin-top: 20px;
     background-color: var(--ColorNum1--);
@@ -134,8 +153,9 @@ input:focus{
     height: 50px;
     border-radius: 60px;
     border: #cd7416 solid 2px;
-}
+} */
 .inputbtn{
+    cursor: pointer;
     color: white;
     font-size: 20px;
     margin-top: 20px;
@@ -152,4 +172,64 @@ input:focus{
 .indexForm span{
     margin-top: 20px; 
     margin-bottom: 20px;
+}
+.navbar-searchbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.NavbarInput{
+    margin-top: 10px;
+    width: 40%;
+    height: 25px;
+    border: #c9c8c8;
+    padding-left: 8px;
+}
+.searchBtn{
+    color: #faeee2;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 25px;
+    height: 25px;
+    border: #c9c8c8;
+    background: var(--ColorNum3--);
+    margin-left: 5px;
+}   
+.Itemcontainer{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 150px;
+}
+.OptionsDisplay{
+
+    height: 150px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.OptionsDisplay button{
+    cursor: pointer;
+    font-size: 35px;
+    margin-left: 15px;
+    border: none;
+    background: none;
+}
+.MenuItem{
+    font-size: 40px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: #353535 solid 3px;
+    border-radius: 25px;
+    background-color: white;
+    overflow: hidden;
+}
+.MenuItem img{
+    height: 110%;
+    margin-left: -25px;
 }

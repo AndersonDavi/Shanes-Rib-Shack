@@ -1,19 +1,19 @@
 {% extends 'layout.html'%}
 
 
-
 {% block body %}
     <main class="MainContainer">
-        <!-- {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-            <p>{{message}}</p>
-        {% endfor %}
-        {% endif %}
-        {% endwith %} -->
+       
         <div class="FormContainer">
             <h1>Registrate</h1>
             <span>Es fácil y rápido</span>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
             <form action="/add_user" method="POST">
 
                 <input type="text" name="name" class="input inputname" placeholder="Nombres"> 

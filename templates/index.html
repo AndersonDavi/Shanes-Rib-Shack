@@ -9,6 +9,13 @@
             <h1>¿Deseas algo?</h1>
             <span>¡Tenemos lo que buscas!</span>
             <form action="/login" method="POST">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
                 <input type="email" name="email" class="input" placeholder="Correo electrónico" required>
                 <input type="password" name="password" class="input" placeholder="Contraseña" required>
                 <button type="submit" class="inputbtn">Ingresar</button>

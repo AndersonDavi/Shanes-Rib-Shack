@@ -78,13 +78,13 @@ def Login():
                 cur.close()
                 if userinfo is not None:
 
-                        if password == userinfo[4]:
+                        if password == userinfo[3]:
                                 session['user'] = userinfo[1]
-                                print("inicio")
                                 return redirect(url_for('menu'))
                         else:
+                                flash("Usuarrio y/o contraseña incorrecta")
                                 return redirect(url_for('index'))
-                                # return render_template('index.html')
+                flash("Usuarrio y/o contraseña incorrecta")
                 return redirect(url_for('index'))
         else:
                 return redirect(url_for('index'))
@@ -133,7 +133,7 @@ def addUser():
 
                 if RegisterValidate(name,lastname,email,password,password2)!="":
                       
-
+                        flash(ErrorMessage)
                         return redirect(url_for('userRegister'))
                 else:
                         cur = mysql.connection.cursor()
@@ -145,12 +145,9 @@ def addUser():
                                 cur.execute('INSERT INTO users (name, lastname, email, password) VALUES (%s,%s,%s,%s)', (name,lastname,email,password))
                                 mysql.connection.commit()
                                 flash('Registrado correctamente')
-                                print("Registrado")
-                                # session['user'] = name
                                 return redirect(url_for('Login'))
                         else:
-                                flash('El usuario ya existe')
-                                print("Ya existe")
+                                flash('El correo ya se encuentra registrado')
                                 return redirect(url_for('userRegister'))  
         else:
                 return redirect(url_for('index'))
