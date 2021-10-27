@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="navlogo">
+                <img src="{{ url_for('static', filename='navLogo.png') }}" alt="">
+                <h1>Shane's Rib Shack</h1>
+            </div>
+            <div class="navOptioons">
+                <form action="/ShanesRibShack/logout" method="POST">
+                    <span class="CarPrice">15.000</span>
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+            </div>
+          
+        </div>
+        <div class="navbar-searchbar">
+            <input type="text" placeholder="Buscar" class="NavbarInput">
+            <button type="" class="searchBtn">A</button>
+        </div>
+    </nav>
+    {% block body%}
+    {% endblock %}
+
+</body>
+</html>

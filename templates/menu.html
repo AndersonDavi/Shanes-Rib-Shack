@@ -1,0 +1,74 @@
+{% extends 'layout2.html'%}
+
+
+
+{% block body %}
+
+<main class="MainContainer MenuContainer">
+
+        
+        <div class="ADSContainer">
+            <div class="ADDChange">
+                <button> < </button>
+            </div>
+            <div class="AdImgContainer">
+                <img src="{{url_for('static', filename='/Anuncios/Anuncio1.jpg')}}" alt="">
+            </div>
+            <div class="ADDChange">
+                <button> > </button>
+            </div>
+        </div>
+    
+        <h2>Menú</h2>
+        <div class="Itemcontainer">
+            <div class="MenuItem">
+                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
+        
+                <span>La parrilada</span>
+            </div>
+            <div class="OptionsDisplay">
+                <button> < </button>
+            </div>
+
+        </div>
+        <div class="Itemcontainer">
+            <div class="MenuItem">
+                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
+        
+                <span>Las clásicas</span>
+            </div>
+            <div class="OptionsDisplay">
+                <button> < </button>
+            </div>
+        </div>
+        <div class="Itemcontainer">
+            <div class="MenuItem">
+                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
+        
+                <span>Combazos</span>
+            </div>
+            <div class="OptionsDisplay">
+                <button> < </button>
+            </div>
+        </div>
+        <div class="Itemcontainer">
+            <div class="MenuItem">
+                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
+        
+                <span>Adicionales</span>
+            </div>
+            <div class="OptionsDisplay">
+                <button> < </button>
+            </div>
+        </div>
+
+ 
+    
+
+
+  
+</main>
+
+
+
+{% endblock %}
