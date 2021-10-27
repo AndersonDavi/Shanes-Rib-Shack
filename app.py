@@ -11,14 +11,10 @@ import os
 import re
 from flask.helpers import flash
 from flask.wrappers import Request
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
+import sqlite3
 
 app = Flask(__name__)
-app.config['MYSQL_HOST']= '127.0.0.1'
-app.config['MYSQL_USER']= 'root'
-app.config['MYSQL_PASSWORD']= ''
-app.config['MYSQL_DB']= 'shanesribdb'
-mysql = MySQL(app)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 
 
@@ -63,19 +59,21 @@ def Login():
                 email = request.form['email']
                 password = request.form['password']
 
-                cur = mysql.connection.cursor()
-                cur.execute("SELECT * FROM users WHERE email=%s",(email,))
-                userinfo = cur.fetchone()
-                print(userinfo)
-                cur.close()
-                if userinfo is not None:
-
-                        if password == userinfo[3]:
-                                if(userinfo[5]==1 or userinfo[5]=="1"):
-                                        session['user'] = userinfo[1]
+                connection = sqlite3.connect("shanesribdb.db")
+                cur = connection.cursor()
+                query = "SELECT * FROM users WHERE email='{s}'".format( s = email)
+                cur.execute(query)
+                result = cur.execute(query)
+                result = result.fetchall()
+                userinfo = result
+                connection.commit()
+                if len(userinfo)!=0:
+                        if password == userinfo[0][3]:
+                                if(userinfo[0][5]==1 or userinfo[0][5]=="1"):
+                                        session['user'] = userinfo[0][1]
                                         return redirect(url_for('menu'))
-                                elif(userinfo[5]==2 or userinfo[5]=="2"):
-                                        session['user'] = userinfo[1]
+                                elif(userinfo[0][5]==2 or userinfo[0][5]=="2"):
+                                        session['user'] = userinfo[0][1]
                                         return redirect(url_for('Adminmenu'))      
                         else:
                                 flash("Usuarrio y/o contraseña incorrecta")
@@ -130,20 +128,22 @@ def addUser():
                 password = request.form['password']
                 password2 = request.form['password2']
                 ErrorMessage = RegisterValidate(name,lastname,email,password,password2)
-
                 if RegisterValidate(name,lastname,email,password,password2)!="":
-                      
                         flash(ErrorMessage)
                         return redirect(url_for('userRegister'))
                 else:
-                        cur = mysql.connection.cursor()
-                        cur.execute("SELECT * FROM users WHERE email=%s",(email,))
-                        userinfo = cur.fetchone()
-                        cur.close()
-                        if userinfo is None:
-                                cur = mysql.connection.cursor()
-                                cur.execute('INSERT INTO users (name, lastname, email, password) VALUES (%s,%s,%s,%s)', (name,lastname,email,password))
-                                mysql.connection.commit()
+                        connection = sqlite3.connect("shanesribdb.db")
+                        cur = connection.cursor()
+                        query = "SELECT * FROM users WHERE email='{s}'".format( s = email)
+                        cur.execute(query)
+                        result = cur.execute(query)
+                        result = result.fetchall()
+                        if len(result)<1:
+                                cur = connection.cursor()
+                                query = "INSERT INTO users (name, lastname, email, password) VALUES ('{a}','{b}','{c}','{d}')".format( a = name, b = lastname, c=email,d=password)
+                                cur.execute(query)
+                                connection.commit()
+
                                 flash('Registrado correctamente')
                                 return redirect(url_for('Login'))
                         else:
@@ -153,4 +153,4 @@ def addUser():
                 return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(port = 3000)
+    app.run(port = 3000, debug=True)
