@@ -1,0 +1,25 @@
+{% extends 'adminLayout.html'%}
+
+
+
+{% block body %}
+
+<main class="MainContainer">
+    <div class="UserCrud">
+        <form action="/UpdateUser/{{users.0}}" method="POST" class="card card-body">
+            <input type="text" name="name" class="input inputname" placeholder="Nombres" value='{{users.1}}''> 
+            <input type="text" name="lastname" class="input inputname" placeholder="Apellidos" value="{{ users.2 }}"> 
+            <input type="email" name="email" class="input" placeholder="Correo electrónico" value="{{ users.4 }}">
+            <input type="password" name="password" class="input" placeholder="Contraseña" value="{{ users.3 }}">
+            <input type="text" name="permission" class="input" placeholder="Permisos" value="{{ users.5 }}">
+            <button type="submit" class="inputbtn">Guardar</button>
+        </form>
+       
+    </div>
+
+  
+</main>
+
+
+
+{% endblock %}

@@ -11,6 +11,7 @@ import os
 import re
 from flask.helpers import flash
 from flask.wrappers import Request
+from werkzeug.security import generate_password_hash, check_password_hash
 # from flask_mysqldb import MySQL
 import sqlite3
 
@@ -22,7 +23,6 @@ app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b
 def es_correo_valido(correo):
     expresion_regular = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
     return re.match(expresion_regular, correo) is not None
-
 def RegisterValidate(name,lastname,email,password,password2):
         RegisterBool = ""
         if len(name)<1:
@@ -41,6 +41,23 @@ def RegisterValidate(name,lastname,email,password,password2):
                 RegisterBool = "Las contraseñas no coinciden"
         return RegisterBool
 
+def UpdateValidate(name,lastname,email,password,permission):
+        RegisterBool = ""
+        if len(name)<1:
+                RegisterBool = "Rellene todos los campos"
+        elif len(lastname)<1:
+                RegisterBool = "Rellene todos los campos"
+        elif len(email)<1:
+                RegisterBool = "Rellene todos los campos"
+        elif es_correo_valido(email) == False:
+                RegisterBool = "Digite un correo válido"
+        elif len(password)<1:
+                RegisterBool = "Rellene todos los campos"
+        elif len(password)<6:
+                RegisterBool = "La contraseña debe ser mínimo de 6 caracteres"
+        elif len(permission)<1:
+                RegisterBool = "Un permiso válido"
+        return RegisterBool
 
 @app.route('/ShanesRibShack', methods = ['GET','POST'])
 def index():
@@ -68,12 +85,12 @@ def Login():
                 userinfo = result
                 connection.commit()
                 if len(userinfo)!=0:
-                        if password == userinfo[0][3]:
+                        if check_password_hash(userinfo[0][3],password):
                                 if(userinfo[0][5]==1 or userinfo[0][5]=="1"):
-                                        session['user'] = userinfo[0][1]
+                                        session['user'] = userinfo[0][4]
                                         return redirect(url_for('menu'))
                                 elif(userinfo[0][5]==2 or userinfo[0][5]=="2"):
-                                        session['user'] = userinfo[0][1]
+                                        session['user'] = userinfo[0][4]
                                         return redirect(url_for('Adminmenu'))      
                         else:
                                 flash("Usuarrio y/o contraseña incorrecta")
@@ -87,13 +104,26 @@ def Login():
 def menu():
         if g.user:
                 return render_template('menu.html',user=session['user'])
-        return redirect(url_for('index'))
+        return redirect(url_for('menu'))
 
 @app.route('/ShanesRibShack/AdminDashboard')
 def Adminmenu():
         if g.user:
                 return render_template('AdminMenu.html',user=session['user'])
-        return redirect(url_for('index'))
+        return redirect(url_for('menu'))
+        
+@app.route('/ShanesRibShack/AdminDashboard/Users',methods=['GET','POST'])
+def Users():
+        session.pop('user', None)
+        connection = sqlite3.connect("shanesribdb.db")
+        cur = connection.cursor()
+        query = "SELECT * FROM users"
+        cur.execute(query)
+        result = cur.execute(query)
+        result = result.fetchall()
+        userinfo = result
+        connection.commit()
+        return render_template('AdminMenu.html', users=result)
 
 @app.before_request
 def before_request():
@@ -138,9 +168,10 @@ def addUser():
                         cur.execute(query)
                         result = cur.execute(query)
                         result = result.fetchall()
+                        encrippassword = generate_password_hash(password)
                         if len(result)<1:
                                 cur = connection.cursor()
-                                query = "INSERT INTO users (name, lastname, email, password) VALUES ('{a}','{b}','{c}','{d}')".format( a = name, b = lastname, c=email,d=password)
+                                query = "INSERT INTO users (name, lastname, email, password) VALUES ('{a}','{b}','{c}','{d}')".format( a = name, b = lastname, c=email,d=encrippassword)
                                 cur.execute(query)
                                 connection.commit()
 
@@ -151,6 +182,64 @@ def addUser():
                                 return redirect(url_for('userRegister'))  
         else:
                 return redirect(url_for('index'))
+@app.route('/deleteUser/<string:id>',methods=['GET','POST'])
+def deleteUser(id):
+        if request.method == 'POST':
+                connection = sqlite3.connect("shanesribdb.db")
+                cur = connection.cursor()
+                query = "DELETE FROM users WHERE id='{s}'".format( s = id)
+                cur.execute(query)
+                connection.commit()
+                flash('Contacto removido')
+                return redirect(url_for('Users'))
+             
+        else:
+                return redirect(url_for('Users'))
+
+@app.route('/editUser/<id>',methods=['GET','POST'])
+def GetUser(id):
+        if request.method == 'POST':
+                connection = sqlite3.connect("shanesribdb.db")
+                cur = connection.cursor()
+                query = "SELECT * FROM users WHERE id='{s}'".format( s = id)
+                cur.execute(query)
+                result = cur.execute(query)
+                result = result.fetchall()
+                userinfo = result
+                connection.commit()
+                return render_template('edit-contac.html', users = userinfo[0])
+             
+        else:
+                return redirect(url_for('Users'))
+@app.route('/UpdateUser/<id>',methods=['GET','POST'])
+def UpdateUser(id):
+        if request.method == 'POST':
+                name = request.form['name']
+                lastname = request.form['lastname']
+                email = request.form['email']
+                password = request.form['password']
+                permission = request.form['permission']
+                ErrorMessage = UpdateValidate(name,lastname,email,password,permission)
+                if UpdateValidate(name,lastname,email,password,permission)!="":
+                        flash(ErrorMessage)
+                        return redirect(url_for('Users'))
+                else:   
+                        encrippassword = generate_password_hash(password)
+                        connection = sqlite3.connect("shanesribdb.db")
+                        cur = connection.cursor()
+                        query = "UPDATE users SET name='{a}', lastname='{b}', password='{c}', email='{d}', permission='{e}' WHERE id='{s}'".format( a = name, b = lastname, c=encrippassword, d = email, e = permission,s = id)
+                        cur.execute(query)
+                        result = cur.execute(query)
+                        result = result.fetchall()
+                        userinfo = result
+                        connection.commit()
+                        return redirect(url_for('Users'))
+                      
+                
+                
+             
+        else:
+                return redirect(url_for('Users'))
 
 if __name__ == '__main__':
     app.run(port = 3000, debug=True)

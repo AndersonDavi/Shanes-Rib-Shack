@@ -6,41 +6,44 @@
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    --ColorNum1-- : #faeee2;
-    --ColorNum2-- : #cd7416;
+    --ColorNum1-- : #cacaca;
+    --ColorNum2-- : #353535;
     --ColorNum3-- : #353535;
+    --ColorNum5-- : #eeeeee;
     --ColorNum4--: #ec9134;
 }
 
-.navbar{
+.Adminnavbar{
     width: 100%;
     height: 130px;
-    background: var(--ColorNum4--);
+    background: var(--ColorNum2--);
     position: fixed;
     display: flex;
     flex-direction: column;
 }
-.navbar-content{
+.Adminnavbar-content{
     border-bottom: #faeee2 solid 1px;
     height: 85px;
     display: flex;
     flex-direction: row;
 }
-.navlogo{
+.Adminnavlogo{
     display: flex;
     align-items: center;
     width: 50%;
     height: 100%;
     padding-left: 20px;
+    filter: invert(100%);
+    color: var(--ColorNum5--);
 }
-.navlogo img{
+.Adminnavlogo img{
     width: 45px;
     height: 40px;
 }
-.navlogo h1{
+.Adminnavlogo h1{
     color: var(--ColorNum3--);
 }
-.navOptioons{
+.AdminnavOptioons{
     color: aliceblue;
     display: flex;
     flex-direction: row;
@@ -48,7 +51,7 @@
     width: 50%;
     height: 100%;
 }
-.navOptioons form{
+.AdminnavOptioons form{
     color: aliceblue;
     display: flex;
     flex-direction: row;
@@ -57,119 +60,15 @@
     padding-right: 40px;
     height: 100%;
 }
-.navOptioons form button{
+.AdminnavOptioons form button{
     cursor: pointer;
-    background: var(--ColorNum4--);
+    background: var(--ColorNum3--);
     color: aliceblue;
     border-radius: 15px;
     border: #faeee2 solid 2px;
     padding: 5px;
 }
-.IndexContainer{
-    overflow: auto;
-    background: var(--ColorNum1--);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse; 
-}
-
-.MainContainer{
-    background: var(--ColorNum1--);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    
-}
-form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    /* min-width: 600px; */
-}
-.FormContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 80%;
-    max-width: 600px;
-    height: 90%;
-    border: solid 6px #cd7416; 
-    overflow: auto;
-}
-.indexForm{
-    border: solid 0px #cd7416; 
-    width: 65%;
-    /* padding-left: 6px; */
-    z-index: 2;
-}
-
-.indexForm a{
-    text-decoration: none;
-    color: #cd7416;
-    margin-top: 35px;
-    font-size: 20px;
-}
-.FormContainer form{
-    display: flex;
-    /* align-items: center; */
-    flex-direction: column;
-}
-.FormContainer h1{
-    color: var(--ColorNum2--);
-    font-size: 45px;
-}
-.FormContainer span{
-    color: var(--ColorNum3--);
-    font-size: 23px;
-    font-weight: 500;
-    margin-bottom: 50px;
-}
-.input{
-    margin-top: 20px;
-    background-color: var(--ColorNum1--);
-    padding: 10px;
-    height: 50px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 60px;
-    border: #cd7416 solid 2px;
-}
-/* input:focus{
-    color: #353535;
-    margin-top: 20px;
-    background-color: var(--ColorNum1--);
-    padding: 10px;
-    height: 50px;
-    border-radius: 60px;
-    border: #cd7416 solid 2px;
-} */
-.inputbtn{
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
-    background-color: var(--ColorNum1--);
-    padding: 10px;
-    height: 50px;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 60px;
-    background: rgb(211,113,12);
-    background: linear-gradient(90deg, rgba(211,113,12,1) 0%, rgba(228,134,38,1) 35%, rgba(249,164,73,1) 100%);
-    border: #cd7416 solid 2px;
-}
-.indexForm span{
-    margin-top: 20px; 
-    margin-bottom: 20px;
-}
-.navbar-searchbar{
+.Adminnavbar-searchbar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,58 +91,17 @@ form{
     background: var(--ColorNum3--);
     margin-left: 5px;
 }   
-.OptionsDisplay{
-
-    height: 150px;
-    width: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.OptionsDisplay button{
-    cursor: pointer;
-    font-size: 35px;
-    margin-left: 15px;
-    border: none;
-    background: none;
-}
-.ADDChange{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.IndexContainer{
+    overflow: auto;
+    background: var(--ColorNum1--);
+    width: 100%;
     height: 100%;
-    width: 10%;
-}
-.ADDChange button{
-    color: #353535;
-    font-size: 45px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-.ADSContainer{
-    width: 80%;
-    height: 300px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-.AdImgContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 80%;
-    overflow: initial;
-}
-.AdImgContainer img{
-    height: 100%;
-    width: auto;
+    flex-direction: row-reverse; 
 }
 
-.MenuContainer{
+.MainContainer{
     background: var(--ColorNum1--);
     width: 100%;
     height: 100vh;
@@ -251,34 +109,23 @@ form{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    overflow: auto;
-    padding-top: 450px;
+    padding-top: 130px;
 }
-.MenuContainer h2{
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-.Itemcontainer{
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 150px;
-    margin-bottom: 25px;
-}
-.MenuItem{
-    font-size: 40px;
-    font-weight: 600;
+form{
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    border: #353535 solid 3px;
-    border-radius: 25px;
-    background-color: white;
-    overflow: hidden;
+    justify-content: center;
+    width: 95%;
+    /* min-width: 600px; */
 }
-.MenuItem img{
-    height: 110%;
-    margin-left: -25px;
+.UserCrud{
+    width: 90%;
+    height: 90%;
+    background-color: var(--ColorNum5--);
+    overflow: auto;
+}
+
+.TableRow{
+    max-width: 100px;
+    border: #ec9134 solid 1px;
 }

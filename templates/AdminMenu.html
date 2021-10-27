@@ -5,7 +5,51 @@
 {% block body %}
 
 <main class="MainContainer">
+    <div class="UserCrud">
+        <table class="table table-striped table-bordered bg-white table-sm">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <thead>
+                <tr class="TableRow">
+                    <td class="tabletitle">id</td>
+                    <td class="tabletitle">name</td>
+                    <td class="tabletitle">lastname</td>
+                    <td class="tabletitle">password</td>
+                    <td class="tabletitle">email</td>
+                    <td class="tabletitle">permission</td>
+                    <td class="tabletitle">options</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for us in users%}
+                {% if us.4 != session['user']%}
+                <tr>
+                    <td>{{us.0}}</td>
+                    <td>{{us.1}}</td>
+                    <td>{{us.2}}</td>
+                    <td>{{us.3}}</td>
+                    <td>{{us.4}}</td>
+                    <td>{{us.5}}</td>
+                    <td>
+                        <form action="/editUser/{{us.0}}" method="POST">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                        <form action="/deleteUser/{{us.0}}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
 
+                </tr>
+                {%endif%}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
   
 </main>
