@@ -20,55 +20,164 @@
         </div>
     
         <h2>Menú</h2>
-        <div class="Itemcontainer">
-            <div class="MenuItem">
-                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
-        
-                <span>La parrilada</span>
-            </div>
-            <div class="OptionsDisplay">
-                <button> < </button>
-            </div>
-
-        </div>
-        <div class="Itemcontainer">
-            <div class="MenuItem">
-                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
-        
-                <span>Las clásicas</span>
-            </div>
-            <div class="OptionsDisplay">
-                <button> < </button>
-            </div>
-        </div>
-        <div class="Itemcontainer">
-            <div class="MenuItem">
-                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
-        
-                <span>Combazos</span>
-            </div>
-            <div class="OptionsDisplay">
-                <button> < </button>
-            </div>
-        </div>
-        <div class="Itemcontainer">
-            <div class="MenuItem">
-                <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
-        
-                <span>Adicionales</span>
-            </div>
-            <div class="OptionsDisplay">
-                <button> < </button>
-            </div>
-        </div>
-
- 
-    
-
-
-  
+        <ul class="menu">
+            <li class="menu__item">
+                <div class="Itemcontainer  containerSubmenu">
+                    <div class="MenuItem">
+                        <img src="{{url_for('static', filename='/itemsimg/2.png')}}" alt="">
+                        <span>Asadura</span>
+                    </div>
+                    <div class="OptionsDisplay">
+                        <button> <i class="fas fa-chevron-down"></i> </button>
+                    </div>
+                </div>
+                <ul class="submenu">
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/3.png')}}" alt="">
+                        
+                                <span>Corte de cerdo</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/4.png')}}" alt="">
+                        
+                                <span>Bistec</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/5.png')}}" alt="">
+                        
+                                <span>Platillo</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/6.png')}}" alt="">
+                        
+                                <span>Corte premium</span>
+                            </div>
+                        </div>
+                    </li>
+                    
+                   
+                </ul>
+            </li>
+            <li class="menu__item">
+                <div class="Itemcontainer containerSubmenu">
+                    <div class="MenuItem">
+                        <img src="{{url_for('static', filename='/itemsimg/1.png')}}" alt="">
+                
+                        <span>Hamburguesas</span>
+                    </div>
+                    <div class="OptionsDisplay">
+                        <button><i class="fas fa-chevron-down"></i> </button>
+                    </div>
+                </div>
+                <ul class="submenu">
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/7.png')}}" alt="">
+                        
+                                <span>Monstruo</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/8.png')}}" alt="">
+                        
+                                <span>De pollo</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/9.png')}}" alt="">
+                                
+                                <span>Queso cheddar</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/10.png')}}" alt="">
+                        
+                                <span>Vegetariana</span>
+                            </div>
+                        </div>
+                    </li>
+                    
+                   
+                </ul>
+            </li>
+            
+            <li class="menu__item">
+                <div class="Itemcontainer containerSubmenu">
+                    <div class="MenuItem">
+                        <img src="{{url_for('static', filename='/itemsimg/11.png')}}" alt="">
+                
+                        <span>Adicionales</span>
+                    </div>
+                    <div class="OptionsDisplay">
+                        <button><i class="fas fa-chevron-down"></i> </button>
+                    </div>
+                </div>
+                <ul class="submenu">
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/12.png')}}" alt="">
+                        
+                                <span>Mini perro</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/13.png')}}" alt="">
+                        
+                                <span>Salchipapa</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/14.png')}}" alt="">
+                        
+                                <span>Churro</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="submenu__item">
+                        <div class="Itemcontainer containerSubmenu">
+                            <div class="MenuItem">
+                                <img src="{{url_for('static', filename='/itemsimg/15.png')}}" alt="">
+                        
+                                <span>Sandwich</span>
+                            </div>
+                        </div>
+                    </li>
+                    
+                   
+                </ul>
+            </li>
+       
+        </ul>
 </main>
-
-
-
 {% endblock %}

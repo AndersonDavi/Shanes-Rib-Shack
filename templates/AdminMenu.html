@@ -1,12 +1,9 @@
 {% extends 'adminLayout.html'%}
 
-
-
 {% block body %}
-
 <main class="MainContainer">
     <div class="UserCrud">
-        <table class="table table-striped table-bordered bg-white table-sm">
+        <table class="table table-striped table-bordered bg-white table-sm table-responsive">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             {% for message in messages %}
@@ -14,22 +11,22 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-            <thead>
-                <tr class="TableRow">
-                    <td class="tabletitle">id</td>
-                    <td class="tabletitle">name</td>
-                    <td class="tabletitle">lastname</td>
-                    <td class="tabletitle">password</td>
-                    <td class="tabletitle">email</td>
-                    <td class="tabletitle">permission</td>
-                    <td class="tabletitle">options</td>
+            <thead class="thead-dark">
+                <tr>
+                    <td scope="col">id</td>
+                    <td scope="col">name</td>
+                    <td scope="col">lastname</td>
+                    <td scope="col">password</td>
+                    <td scope="col">email</td>
+                    <td scope="col">permission</td>
+                    <td scope="col">options</td>
                 </tr>
             </thead>
             <tbody>
                 {% for us in users%}
                 {% if us.4 != session['user']%}
                 <tr>
-                    <td>{{us.0}}</td>
+                    <td scope="row">{{us.0}}</td>
                     <td>{{us.1}}</td>
                     <td>{{us.2}}</td>
                     <td>{{us.3}}</td>
@@ -53,7 +50,4 @@
 
   
 </main>
-
-
-
 {% endblock %}

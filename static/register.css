@@ -16,7 +16,6 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: row-reverse; 
 }
 .indexBG{
@@ -24,6 +23,9 @@
     z-index: 1;
     height: 100%;
     width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .MainContainer{
     background: var(--ColorNum1--);
@@ -39,7 +41,6 @@ form{
     align-items: center;
     justify-content: center;
     width: 95%;
-    /* min-width: 600px; */
 }
 .FormContainer{
     display: flex;
@@ -55,7 +56,6 @@ form{
 .indexForm{
     border: solid 0px #cd7416; 
     width: 65%;
-    /* padding-left: 6px; */
     z-index: 2;
 }
 
@@ -67,7 +67,6 @@ form{
 }
 .FormContainer form{
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
 }
 .FormContainer h1{
